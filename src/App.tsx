@@ -1,22 +1,21 @@
 import * as React from 'react';
 import './App.css';
 
-import logo from './logo.svg';
+import Card from './components/Card';
+import Container from './components/Container';
+import Title from './components/Title';
+// import register from './registerServiceWorker';
 
 class App extends React.Component {
-  public render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+ public render() {
+  return (
+   <Container center={true}>
+    <Card>
+     <Title>Registro</Title>
+    </Card>
+   </Container>
+  );
+ }
 }
 
 export default App;
