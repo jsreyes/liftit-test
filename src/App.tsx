@@ -1,18 +1,15 @@
-import * as React from 'react';
 import './App.css';
 
-import Card from './components/Card';
-import Container from './components/Container';
-import Title from './components/Title';
+import * as React from 'react';
+import { Route } from 'react-router';
+
+// Contenedores
+import Login from './containers/Login'
 
 class App extends React.Component {
  public render() {
   return (
-   <Container center={true}>
-    <Card>
-     <Title>Login</Title>
-    </Card>
-   </Container>
+   <Route exact={true} path='/' component={Login}/>
   );
  }
 }
