@@ -4,10 +4,11 @@ import createHistory from 'history/createBrowserHistory';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 // Importando redux
-import { Provider } from 'react-redux';
+import { Provider } from 'react-redux'
 // Importando React router
 import { Router } from 'react-router'
 import { applyMiddleware, combineReducers, createStore  } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { reducer as formReducer } from 'redux-form'
 import thunk from 'redux-thunk';
 
@@ -20,7 +21,9 @@ import * as reducers from './thunks';
 const store = createStore(combineReducers({
  ...reducers,
  form: formReducer
-}), applyMiddleware(thunk.withExtraArgument(services)))
+}), composeWithDevTools(
+ applyMiddleware(thunk.withExtraArgument(services))
+))
 
 // Creando la const de history que necesita el Router
 const history = createHistory();
@@ -28,7 +31,7 @@ const history = createHistory();
 ReactDOM.render(
  <Provider store={store}>
   <Router history={history}>
-   <App />
+   <App history={history} />
   </Router>
  </Provider>
 
