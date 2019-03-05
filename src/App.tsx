@@ -3,7 +3,6 @@ import './App.css';
 
 import Card from './components/Card';
 import Container from './components/Container';
-import Login from './containers/Login';
 import Title from './components/Title';
 
 class App extends React.Component {
@@ -12,7 +11,6 @@ class App extends React.Component {
    <Container center={true}>
     <Card>
      <Title>Login</Title>
-     <Login />
     </Card>
    </Container>
   );
