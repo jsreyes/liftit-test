@@ -5,11 +5,16 @@ import { Route } from 'react-router';
 
 // Contenedores
 import Login from './containers/Login'
+import Register from './containers/Register'
+
 
 class App extends React.Component {
  public render() {
   return (
-   <Route exact={true} path='/' component={Login}/>
+   <div>
+    <Route exact={true} path='/' component={Login} />
+    <Route exact={true} path='/register' component={Register} />
+   </div>
   );
  }
 }
