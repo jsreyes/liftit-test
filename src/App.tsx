@@ -7,6 +7,10 @@ import { Route } from 'react-router'
 // Contenedores
 import Login from './containers/Login'
 import Register from './containers/Register'
+import RequestService from './containers/RequestService'
+
+// Componentes
+import NavBar from './components/NavBar';
 
 // Importando servicios
 import services from './services'
@@ -24,7 +28,7 @@ class App extends React.Component<IAppProps> {
 
  public componentDidMount() {
   const { auth } = services
-  auth.onAuthStateChanged(user => {
+  auth.onAuthStateChanged((user: any) => {
    if (user) {
     if (['/', '/register'].indexOf(location.pathname) > -1) {
      const { history } = this.props
@@ -49,6 +53,8 @@ class App extends React.Component<IAppProps> {
    loading ? 'Loading' : <div>
     <Route exact={true} path='/' component={Login} />
     <Route exact={true} path='/register' component={Register} />
+    <Route path='/app' component={NavBar} />
+    <Route exact={true} path='/app/service' component={RequestService} />
    </div>
   );
  }
