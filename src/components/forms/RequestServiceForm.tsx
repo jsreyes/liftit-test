@@ -1,6 +1,7 @@
 import * as React from 'react';
+
 // import { Link } from 'react-router-dom'
-import { Field, InjectedFormProps, reduxForm, } from 'redux-form'
+import { Field, InjectedFormProps, reduxForm } from 'redux-form'
 
 // Importando componentes
 import Button from '../Button'
@@ -13,11 +14,11 @@ class RequestServiceForm extends React.Component<InjectedFormProps> {
   return (
    <form onSubmit={handleSubmit}>
     <Field label="Descripción" placeholder="Agregue la descripción del servicio" name="descripcion" type="text" component={Input} />
-    <Field label="Dirección Origen" placeholder="Dirección de Origen" name="origen" type="text" component={Input}/>
-    <Field label="Dirección Destino" placeholder="Dirección de Destino" name="destino" type="text" component={Input}/>
+    <Field label="Dirección Origen" placeholder="Dirección de Origen" name="origen" type="text" component={Input} />
+    <Field label="Dirección Destino" placeholder="Dirección de Destino" name="destino" type="text" component={Input} />
     <Button block={true}>Enviar</Button>
     <Center>
-     aqui va mapa
+     Aqui va el componente del mapa
     </Center>
    </form>
   )
