@@ -7,13 +7,14 @@ import Container from '../components/Container'
 import RequestServiceForm from '../components/forms/RequestServiceForm'
 import Title from '../components/Title'
 
-import { IRequestService, requestService as requestThunk } from '../thunks/RequestsService'
+import { IRequestService, requestService as requestThunk } from '../thunks/RequestService'
 
 interface IRequestServiceProps {
  requestService: (a: IRequestService) => void
 }
 
 class RequestService extends React.Component<IRequestServiceProps> {
+
  public render() {
   const { requestService } = this.props
   return (
@@ -30,7 +31,7 @@ class RequestService extends React.Component<IRequestServiceProps> {
 const mapStateToProps = (state: any) => state
 
 const mapDispatchToProps = (dispatch: any) => ({
- login: (payload: any) => dispatch(requestThunk(payload))
+ requestService: (payload: IRequestService) => dispatch(requestThunk(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RequestService)

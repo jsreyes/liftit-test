@@ -10,17 +10,17 @@ import Title from '../components/Title'
 import { ILogin, register as registerThunk } from '../thunks/Users'
 
 interface ILoginProps {
- login: (a: ILogin) => void
+ register: (a: ILogin) => void
 }
 
 class Register extends React.Component<ILoginProps> {
  public render() {
-  const { login } = this.props
+  const { register } = this.props
   return (
    <Container center={true}>
     <Card>
      <Title>Registro</Title>
-      <RegisterForm onSubmit={login}/>
+      <RegisterForm onSubmit={register}/>
     </Card>
    </Container>
   )
@@ -30,7 +30,7 @@ class Register extends React.Component<ILoginProps> {
 const mapStateToProps = (state: any) => state
 
 const mapDispatchToProps = (dispatch: any) => ({
- login: (payload: any) => dispatch(registerThunk(payload))
+ register: (payload: any) => dispatch(registerThunk(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register)
