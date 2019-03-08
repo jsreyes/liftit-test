@@ -93,8 +93,8 @@ export const requestService = ({ description, destinationAddress, originAddress 
    const dataResponse = {
     description,
     destinationAddress,
-    distance: result['routes'][0]['legs'][0]['distance']['text'],
-    estimatedTime: result['routes'][0]['legs'][0]['duration']['text'],
+    distance: '12km',
+    estimatedTime: '30min',
     originAddress
    }
 
