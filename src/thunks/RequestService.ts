@@ -17,6 +17,9 @@ export interface IRequestService {
 
 // Funciones de las acciones
 const fetchFindRoute = (description: string, destinationAddress: string, originAddress: string) => ({
+ description,
+ destinationAddress,
+ originAddress,
  type: FIND_ROUTE,
 })
 
@@ -44,12 +47,16 @@ export default function reducer(state = initialState, action: AnyAction) {
   case FIND_ROUTE:
    return {
     ...state,
+    description: action.description,
+    destinationAddress: action.destinationAddress,
+    originAddress: action.originAddress
    }
 
   case FIND_ROUTE_SUCCESS:
    return {
     ...state,
-    data: action.payload
+    distance: action.data.distance,
+    estimatedTime: action.data.estimatedTime
    }
 
   case FIND_ROUTE_FAIL:
@@ -63,33 +70,39 @@ export default function reducer(state = initialState, action: AnyAction) {
  }
 }
 
-export const requestService = (payload: IRequestService) =>
+export const requestService = ({ description, destinationAddress, originAddress }: IRequestService) =>
  async (dispatch: Dispatch, getState: () => any, { auth }: IServices) => {
-  // tslint:disable-next-line:no-console
-  console.log(payload.originAddress, ' este es el payload')
-  // tslint:disable-next-line:no-console
-  console.log(payload.originAddress, ' esta es la direccion de orgen')
-  dispatch(fetchFindRoute(payload.description, payload.destinationAddress, payload.originAddress))
-  const url = 'https://maps.googleapis.com/maps/api/directions/json?origin=' + payload.destinationAddress +'&destination=' + payload.originAddress + '&key=AIzaSyD_7DT7arDmbXGcwIdZ68-HwGH5nwenAEE'
+  dispatch(fetchFindRoute(description, destinationAddress, originAddress))
+  const url = 'https://maps.googleapis.com/maps/api/directions/json?origin=' + destinationAddress + '&destination=' + originAddress + '&key=AIzaSyD_7DT7arDmbXGcwIdZ68-HwGH5nwenAEE'
   try {
-   // tslint:disable-next-line:no-console
-   console.log(payload.originAddress, ' esta es la direccion de orign')
 
    const result = await fetch(url)
+    .then((response) => {
+     return response.json();
+    })
+    .then((data) => {
+     return data;
+    });
+
+   // const dataResult = result.json().then(data => {
+
+  
    // tslint:disable-next-line:no-console
-   console.log(result, ' este es el resultado de la respuesta del servicio')
-   const data = {
-    description: 'Este fue',
-    destinationAddress: 'Bogota',
-    distance: '12km',
-    estimatedTime: '30min',
-    originAddress: 'Medellin',
+   console.log(result, ' esta es la respuesta')
+
+   const dataResponse = {
+    description,
+    destinationAddress,
+    distance: result['routes'][0]['legs'][0]['distance']['text'],
+    estimatedTime: result['routes'][0]['legs'][0]['duration']['text'],
+    originAddress
    }
-   dispatch(fetchFindRouteSuccess(data))
+
+   dispatch(fetchFindRouteSuccess(dataResponse))
 
   } catch (error) {
    // tslint:disable-next-line:no-console
-   console.log(payload.destinationAddress, ' esta es la direccion de destino')
+   console.log(destinationAddress, ' esta es la direccion de destino')
    dispatch(fetchFindRouteError(error))
 
   }

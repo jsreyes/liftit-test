@@ -77,7 +77,6 @@ export const login = ({ email, password }: ILogin) =>
 export const register = ({ email, password }: ILogin) =>
  async (dispatch: Dispatch, getState: () => any, { auth, db }: IServices) => {
   const userCredential = await auth.createUserWithEmailAndPassword(email, password)
-  // tslint:disable-next-line:no-console
   const { user } = userCredential
   const id = user ? user.uid : undefined
   const doc = db.collection('users').doc(id)

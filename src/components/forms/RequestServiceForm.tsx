@@ -13,9 +13,9 @@ class RequestServiceForm extends React.Component<InjectedFormProps> {
   const { handleSubmit } = this.props
   return (
    <form onSubmit={handleSubmit}>
-    <Field label="Descripción" placeholder="Agregue la descripción del servicio" name="descripcion" type="text" component={Input} />
-    <Field label="Dirección Origen" placeholder="Dirección de Origen" name="origen" type="text" component={Input} />
-    <Field label="Dirección Destino" placeholder="Dirección de Destino" name="destino" type="text" component={Input} />
+    <Field label="Descripción" placeholder="Agregue la descripción del servicio" name="description" type="text" component={Input} />
+    <Field label="Dirección Origen" placeholder="Dirección de Origen" name="originAddress" type="text" component={Input} />
+    <Field label="Dirección Destino" placeholder="Dirección de Destino" name="destinationAddress" type="text" component={Input} />
     <Button block={true}>Enviar</Button>
     <Center>
      Aqui va el componente del mapa
