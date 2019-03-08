@@ -23,7 +23,7 @@ const fetchFindRoute = (description: string, destinationAddress: string, originA
  type: FIND_ROUTE,
 })
 
-const fetchFindRouteSuccess = (data: IRequestService) => ({
+const fetchFindRouteSuccess = (data: any) => ({
  data,
  type: FIND_ROUTE_SUCCESS,
 })
