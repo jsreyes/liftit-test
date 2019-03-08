@@ -13,6 +13,7 @@ import RequestService from './containers/RequestService'
 import NavBar from './components/NavBar';
 
 // Importando servicios
+import Spinner from './components/Spinner';
 import services from './services'
 
 // Creando interface para APP
@@ -50,7 +51,7 @@ class App extends React.Component<IAppProps> {
  public render() {
   const { loading } = this.state
   return (
-   loading ? 'Loading' : <div>
+   loading ? <Spinner /> : <div>
     <Route exact={true} path='/' component={Login} />
     <Route exact={true} path='/register' component={Register} />
     <Route path='/app' component={NavBar} />
