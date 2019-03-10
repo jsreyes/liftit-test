@@ -3,6 +3,7 @@ import * as React from 'react'
 const style = {
  backgroundColor: '#fff',
  border: '1px solid #eee',
+ borderRadius: '5%',
  padding: '10px 15px'
 }
 

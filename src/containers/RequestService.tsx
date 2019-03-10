@@ -17,7 +17,7 @@ class RequestService extends React.Component<IRequestServiceProps> {
  public render() {
   const { requestService } = this.props
   return (
-   <Container center={true}>
+   <Container center={true} viewLogin={true}>
     <Card>
      <Title>Solicitar Servicio</Title>
      <RequestServiceForm onSubmit={requestService} />
