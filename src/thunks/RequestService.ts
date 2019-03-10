@@ -73,7 +73,7 @@ export default function reducer(state = initialState, action: AnyAction) {
 export const requestService = ({ description, destinationAddress, originAddress }: IRequestService) =>
  async (dispatch: Dispatch, getState: () => any, { auth }: IServices) => {
   dispatch(fetchFindRoute(description, destinationAddress, originAddress))
-  const url = 'https://maps.googleapis.com/maps/api/directions/json?origin=' + destinationAddress + '&destination=' + originAddress + '&key=AIzaSyD_7DT7arDmbXGcwIdZ68-HwGH5nwenAEE'
+  const url = 'https://maps.googleapis.com/maps/api/directions/json?origin=' + originAddress + '&destination=' + destinationAddress + '&key=AIzaSyD_7DT7arDmbXGcwIdZ68-HwGH5nwenAEE'
   try {
 
    const result = await fetch(url)
@@ -84,17 +84,11 @@ export const requestService = ({ description, destinationAddress, originAddress 
      return data;
     });
 
-   // const dataResult = result.json().then(data => {
-
-  
-   // tslint:disable-next-line:no-console
-   console.log(result, ' esta es la respuesta')
-
    const dataResponse = {
     description,
     destinationAddress,
-    distance: '12km',
-    estimatedTime: '30min',
+    distance: result.routes[0].legs[0].distance.text,
+    estimatedTime: result.routes[0].legs[0].duration.text,
     originAddress
    }
 
@@ -102,21 +96,9 @@ export const requestService = ({ description, destinationAddress, originAddress 
 
   } catch (error) {
    // tslint:disable-next-line:no-console
-   console.log(destinationAddress, ' esta es la direccion de destino')
+   console.log(error, ' este es el error')
    dispatch(fetchFindRouteError(error))
-
   }
-
-  //  dispatch(fetchLogin())
-  //  const a = await auth.signInWithEmailAndPassword(email, password)
-  //  try {
-  //     // tslint:disable-next-line:no-console
-  //     console.log(a, ' esto es lo qe responde')
-  //   dispatch(fetchLoginSuccess(a))
-  //  } catch (error) {
-  //     // tslint:disable-next-line:no-console
-  //   console.log(error, ' este es el error')
-  //   dispatch(fetchLoginError(error))
  }
 
 
