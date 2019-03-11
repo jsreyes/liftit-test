@@ -17,7 +17,7 @@ class RegisterForm extends React.Component<InjectedFormProps> {
    <form onSubmit={handleSubmit}>
     <Field label="Correo" placeholder="Correo" name="email" type="email" component={Input} />
     <Field label="Contraseña" placeholder="Password" name="password" type="password" component={Input}/>
-    <Button block={true}>Enviar</Button>
+    <Button block={'valid'}>Enviar</Button>
     <Center>
      <Link to='/'>Iniciar Sesión</Link>
     </Center>
