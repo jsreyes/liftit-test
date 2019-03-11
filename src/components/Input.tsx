@@ -19,17 +19,29 @@ const spanStyle = {
  textTransform: 'uppercase'
 } as React.CSSProperties // Se indica a react que lo tome como propiedades Css, no como un objeto
 
+// Definiendo estilos para el span
+const spanErrorsStyle = {
+ color: 'red',
+ display: 'flex',
+ fontSize: '9px',
+ justifyContent: 'center',
+ paddingBottom: '10px'
+} as React.CSSProperties // Se indica a react que lo tome como propiedades Css, no como un objeto
+
 interface IInputProps {
  placeholder?: string,
  label: string
 }
 
 const Input: React.StatelessComponent<WrappedFieldProps & IInputProps> = props => {
- const { input, label } = props
+ const { input, label, meta } = props
+ // tslint:disable-next-line:no-console
+ console.log(meta)
  return (
   <div>
    <span style={spanStyle}>{label}</span>
    <input {...input} {...props} style={style} />
+   {meta.touched && meta.error ? <span style={spanErrorsStyle}>{meta.error}</span>: ''}
   </div>
  )
 }

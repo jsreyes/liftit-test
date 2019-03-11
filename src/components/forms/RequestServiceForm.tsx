@@ -3,6 +3,9 @@ import * as React from 'react';
 // import { Link } from 'react-router-dom'
 import { Field, InjectedFormProps, reduxForm } from 'redux-form'
 
+// Se importa el archivo con las validaciones
+import validate from '../../helpers/validators/validate'
+
 // Importando componentes
 import Button from '../Button'
 import Center from '../Center'
@@ -26,5 +29,6 @@ class RequestServiceForm extends React.Component<InjectedFormProps> {
 }
 
 export default reduxForm({
- form: 'request-service'
+ form: 'request-service',
+ validate
 })(RequestServiceForm)
