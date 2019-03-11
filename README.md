@@ -44,5 +44,5 @@ yarn install
 yarn start
 ```
 
-- Important: When enter to app/service and submit button, appears some CORS error please add Allow-Control-Allow-Origin: *
+- Important: When enter to app/service and submit button, appears some CORS error please add Allow-Control-Allow-Origin: * and enabled cross origin resource shared
 In next link you can download extension (https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=es-419)
