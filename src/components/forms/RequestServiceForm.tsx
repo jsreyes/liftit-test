@@ -20,9 +20,7 @@ class RequestServiceForm extends React.Component<InjectedFormProps> {
     <Field label="Dirección Origen" placeholder="Dirección de Origen" name="originAddress" type="text" component={Input} />
     <Field label="Dirección Destino" placeholder="Dirección de Destino" name="destinationAddress" type="text" component={Input} />
     <Button block={'valid'}>Enviar</Button>
-    <Center>
-     Aqui va el componente del mapa
-    </Center>
+    <Center />
    </form>
   )
  }
