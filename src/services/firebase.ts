@@ -1,12 +1,13 @@
 import * as firebase from 'firebase'
+import { environment } from '../environment/environment'
 
 const config = {
- apiKey: "AIzaSyDWjJjGLCY89qyY267esoKdmP7l-Xoz96Y",
- authDomain: "liftit-test-9a9bc.firebaseapp.com",
- databaseURL: "https://liftit-test-9a9bc.firebaseio.com",
- messagingSenderId: "711684630109",
- projectId: "liftit-test-9a9bc",
- storageBucket: "liftit-test-9a9bc.appspot.com",
+ apiKey: environment.FIREBASE.API_KEY_FIREBASE,
+ authDomain: environment.FIREBASE.AUTH_DOMAIN,
+ databaseURL: environment.FIREBASE.DATABASE_URL,
+ messagingSenderId: environment.FIREBASE.MESSAGING_SENDER_ID,
+ projectId: environment.FIREBASE.PROJECT_ID,
+ storageBucket: environment.FIREBASE.STORAGE_BUCKET,
 };
 
 firebase.initializeApp(config);

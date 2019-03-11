@@ -1,4 +1,5 @@
 import { AnyAction, Dispatch } from 'redux';
+import { environment } from '../environment/environment'
 import { IServices } from '../services/index'
 
 // Creando acciones
@@ -73,7 +74,7 @@ export default function reducer(state = initialState, action: AnyAction) {
 export const requestService = ({ description, destinationAddress, originAddress }: IRequestService) =>
  async (dispatch: Dispatch, getState: () => any, { auth }: IServices) => {
   dispatch(fetchFindRoute(description, destinationAddress, originAddress))
-  const url = 'https://maps.googleapis.com/maps/api/directions/json?origin=' + originAddress + '&destination=' + destinationAddress + '&key=AIzaSyD_7DT7arDmbXGcwIdZ68-HwGH5nwenAEE'
+  const url = 'https://maps.googleapis.com/maps/api/directions/json?origin=' + originAddress + '&destination=' + destinationAddress + '&key=' + environment.GOOGLE_MAPS.API_KEY_GOOGLE_MAPS + ''
   try {
 
    const result = await fetch(url)
