@@ -1,8 +1,11 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 
 import { faMapMarkedAlt,faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { logout as logoutThunk } from '../thunks/Users'
 
 // definiendo estilos para Button
 const style = {
@@ -16,15 +19,28 @@ const style = {
  },
 }
 
-export default class NavBar extends React.Component {
+// interface INavBarProps {
+//  logout: (a: ILogin) => void
+// }
+
+class NavBar extends React.Component {
  public render() {
+  // const { logout } = this.props
   return (
    <div style={style.navbar}>
-    <Link style={style.link} to='/app/newsfeed'><FontAwesomeIcon icon={faMapMarkedAlt} /> Liftit Test</Link>
+    <Link style={style.link} to='/app/service'><FontAwesomeIcon icon={faMapMarkedAlt} /> Liftit Test</Link>
     <div style={{ float: 'right' }}>
-     <Link style={style.link} to='/app/profile'><FontAwesomeIcon icon={faSignOutAlt} /> Salir</Link>
+     <Link style={style.link} to='/app/service' ><FontAwesomeIcon icon={faSignOutAlt} /> Salir</Link>
     </div>
    </div>
   )
  }
 }
+
+const mapStateToProps = (state: any) => state
+
+const mapDispatchToProps = (dispatch: any) => ({
+ logout: () => dispatch(logoutThunk())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar)

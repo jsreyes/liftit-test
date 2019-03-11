@@ -35,8 +35,6 @@ interface IInputProps {
 
 const Input: React.StatelessComponent<WrappedFieldProps & IInputProps> = props => {
  const { input, label, meta } = props
- // tslint:disable-next-line:no-console
- console.log(meta)
  return (
   <div>
    <span style={spanStyle}>{label}</span>

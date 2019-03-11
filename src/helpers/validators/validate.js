@@ -1,7 +1,6 @@
 // Se define constante para validar campos
 const validate = (values) => {
  // tslint:disable-next-line:no-console
- console.log(values, ' estos son los valores que vienen de los formularios')
  const errors = {
   description: '',
   destinationAddress: '',
