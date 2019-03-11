@@ -23,8 +23,6 @@ class RequestService extends React.Component<IRequestServiceProps> {
   super(props)
  }
  public render() {
-  // tslint:disable-next-line:no-console
-  // console.log(this.props, ' estas son las propiedades del request service')
   const { requestService, distance, estimatedTime } = this.props
   return (
    <Container center={true} viewLogin={true}>

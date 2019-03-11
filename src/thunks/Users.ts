@@ -104,12 +104,8 @@ export const login = ({ email, password }: ILogin) =>
   dispatch(fetchLogin())
   const a = await auth.signInWithEmailAndPassword(email, password)
   try {
-   // tslint:disable-next-line:no-console
-   console.log(a, ' esto es lo qe responde')
    dispatch(fetchLoginSuccess(a))
   } catch (error) {
-   // tslint:disable-next-line:no-console
-   console.log(error, ' este es el error')
    dispatch(fetchLoginError(error))
   }
  }
@@ -120,12 +116,8 @@ export const logout = () =>
   dispatch(fetchLogout())
   const a = await auth.signOut()
   try {
-   // tslint:disable-next-line:no-console
-   console.log(a, ' esto es lo qe responde')
    dispatch(fetchLogoutSuccess(a))
   } catch (error) {
-   // tslint:disable-next-line:no-console
-   console.log(error, ' este es el error')
    dispatch(fetchLogoutError(error))
   }
  }
@@ -139,5 +131,4 @@ export const register = ({ email, password }: ILogin) =>
   const id = user ? user.uid : undefined
   const doc = db.collection('users').doc(id)
   await doc.set({ role: 'user' })
-  // tslint:disable-next-line:no-console
  }

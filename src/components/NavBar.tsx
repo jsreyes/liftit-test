@@ -19,18 +19,20 @@ const style = {
  },
 }
 
-// interface INavBarProps {
-//  logout: (a: ILogin) => void
-// }
+interface INavBarProps {
+ logout: any
+}
 
-class NavBar extends React.Component {
+class NavBar extends React.Component<INavBarProps> {
  public render() {
-  // const { logout } = this.props
+  const { logout } = this.props
+  // tslint:disable-next-line:no-console
+  console.log(this.props, logout,  ' estas son las propiedades del request service')
   return (
    <div style={style.navbar}>
     <Link style={style.link} to='/app/service'><FontAwesomeIcon icon={faMapMarkedAlt} /> Liftit Test</Link>
     <div style={{ float: 'right' }}>
-     <Link style={style.link} to='/app/service' ><FontAwesomeIcon icon={faSignOutAlt} /> Salir</Link>
+     <Link style={style.link} to='/' onClick={logout}><FontAwesomeIcon icon={faSignOutAlt} /> Salir</Link>
     </div>
    </div>
   )
