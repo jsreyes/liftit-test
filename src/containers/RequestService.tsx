@@ -7,9 +7,13 @@ import Container from '../components/Container'
 import RequestServiceForm from '../components/forms/RequestServiceForm'
 import Title from '../components/Title'
 
-
 import { IRequestService, requestService as requestThunk } from '../thunks/RequestService'
 
+const styleDivsShowData = {
+ display: 'flex',
+ justifyContent: 'center',
+ padding: '10px'
+}
 
 interface IRequestServiceProps {
  requestService: (a: IRequestService) => void,
@@ -29,8 +33,8 @@ class RequestService extends React.Component<IRequestServiceProps> {
     <Card>
      <Title>Solicitar Servicio</Title>
      <RequestServiceForm onSubmit={requestService}/>
-     {distance ? <div>{distance}</div> : ''}
-     {estimatedTime ? <div>{estimatedTime}</div> : ''}
+     {distance ? <div style={styleDivsShowData}>Distancia: {distance}</div> : ''}
+     {estimatedTime ? <div style={styleDivsShowData}>Tiempo Estimado: {estimatedTime}</div> : ''}
     </Card>
    </Container>
   )
