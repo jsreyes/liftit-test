@@ -1,5 +1,5 @@
 import { AnyAction, Dispatch } from 'redux';
-import { environment } from '../environment/environment'
+// import { environment } from '../environment/environment'
 import { IServices } from '../services/index'
 
 // Creando acciones
@@ -11,9 +11,11 @@ const FIND_ROUTE_FAIL = '[SERVICE] Find Route Fail'
 export interface IRequestService {
  description: string,
  destinationAddress: string,
- distance: string
+ distance: string,
+ endLocation: object,
  estimatedTime: string,
  originAddress: string,
+ startLocation: object,
 }
 
 // Funciones de las acciones
@@ -39,8 +41,10 @@ const initialState = {
  description: undefined,
  destinationAddress: undefined,
  distance: undefined,
+ endLocation: undefined,
  estimatedTime: undefined,
  originAddress: undefined,
+ startLocation: undefined,
 }
 
 export default function reducer(state = initialState, action: AnyAction) {
@@ -57,7 +61,9 @@ export default function reducer(state = initialState, action: AnyAction) {
    return {
     ...state,
     distance: action.data.distance,
-    estimatedTime: action.data.estimatedTime
+    endLocation: action.data.endLocation,
+    estimatedTime: action.data.estimatedTime,
+    startLocation: action.data.startLocation
    }
 
   case FIND_ROUTE_FAIL:
@@ -74,9 +80,8 @@ export default function reducer(state = initialState, action: AnyAction) {
 export const requestService = ({ description, destinationAddress, originAddress }: IRequestService) =>
  async (dispatch: Dispatch, getState: () => any, { auth }: IServices) => {
   dispatch(fetchFindRoute(description, destinationAddress, originAddress))
-  const url = 'https://maps.googleapis.com/maps/api/directions/json?origin=' + originAddress + '&destination=' + destinationAddress + '&key=' + environment.GOOGLE_MAPS.API_KEY_GOOGLE_MAPS + ''
+  const url = 'http://localhost:3500/route?origin=' + originAddress + '&destination=' + destinationAddress;
   try {
-
    const result = await fetch(url)
     .then((response) => {
      return response.json();
@@ -88,9 +93,11 @@ export const requestService = ({ description, destinationAddress, originAddress 
    const dataResponse = {
     description,
     destinationAddress,
-    distance: result.routes[0].legs[0].distance.text,
-    estimatedTime: result.routes[0].legs[0].duration.text,
-    originAddress
+    distance: result.distance,
+    endLocation: result.end_location,
+    estimatedTime: result.duration,
+    originAddress,
+    startLocation: result.start_location
    }
 
    dispatch(fetchFindRouteSuccess(dataResponse))
