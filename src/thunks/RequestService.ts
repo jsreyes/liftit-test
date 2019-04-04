@@ -80,7 +80,7 @@ export default function reducer(state = initialState, action: AnyAction) {
 export const requestService = ({ description, destinationAddress, originAddress }: IRequestService) =>
  async (dispatch: Dispatch, getState: () => any, { auth }: IServices) => {
   dispatch(fetchFindRoute(description, destinationAddress, originAddress))
-  const url = 'http://localhost:3500/route?origin=' + originAddress + '&destination=' + destinationAddress;
+  const url = 'http://localhost:5000/route?origin=' + originAddress + '&destination=' + destinationAddress;
   try {
    const result = await fetch(url)
     .then((response) => {
