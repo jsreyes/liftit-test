@@ -9,13 +9,12 @@ const FIND_ROUTE_FAIL = '[SERVICE] Find Route Fail'
 
 // Interface de Login
 export interface IRequestService {
+ coordenates: object[],
  description: string,
  destinationAddress: string,
  distance: string,
- endLocation: object,
  estimatedTime: string,
  originAddress: string,
- startLocation: object,
 }
 
 // Funciones de las acciones
@@ -38,13 +37,12 @@ const fetchFindRouteError = (error: Error) => ({
 
 // Estado inicial
 const initialState = {
+ coordenates: undefined,
  description: undefined,
  destinationAddress: undefined,
  distance: undefined,
- endLocation: undefined,
  estimatedTime: undefined,
  originAddress: undefined,
- startLocation: undefined,
 }
 
 export default function reducer(state = initialState, action: AnyAction) {
@@ -60,10 +58,9 @@ export default function reducer(state = initialState, action: AnyAction) {
   case FIND_ROUTE_SUCCESS:
    return {
     ...state,
+    coordenates: action.data.coordenates,
     distance: action.data.distance,
-    endLocation: action.data.endLocation,
     estimatedTime: action.data.estimatedTime,
-    startLocation: action.data.startLocation
    }
 
   case FIND_ROUTE_FAIL:
@@ -91,13 +88,12 @@ export const requestService = ({ description, destinationAddress, originAddress 
     });
 
    const dataResponse = {
+    coordenates: result.coordenates,
     description,
     destinationAddress,
     distance: result.distance,
-    endLocation: result.end_location,
     estimatedTime: result.duration,
     originAddress,
-    startLocation: result.start_location
    }
 
    dispatch(fetchFindRouteSuccess(dataResponse))
