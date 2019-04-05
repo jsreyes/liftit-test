@@ -16,10 +16,6 @@ class MapContainer extends React.Component {
  }
 
  handleMapReady(mapProps, map) {
-    // tslint:disable-next-line:no-console
-    console.log(mapProps, ' esto es map props');
-    // tslint:disable-next-line:no-console
-    console.log(map, ' esto es map');
   this.calculateAndDisplayRoute(map);
  }
 
@@ -27,10 +23,6 @@ class MapContainer extends React.Component {
   const directionsService = new google.maps.DirectionsService();
   const directionsDisplay = new google.maps.DirectionsRenderer();
   directionsDisplay.setMap(map);
-
-  // tslint:disable-next-line:no-console
-  console.log(this.props, ' estas son las props de google');
-
 
   let waypoints = this.props.data.map(item => {
    return {

@@ -37,9 +37,7 @@ class RequestService extends React.Component<IRequestServiceProps> {
   super(props)
  }
  public render() {
-  const { requestService, distance, estimatedTime, coordenates } = this.props
- // tslint:disable-next-line:no-console
- console.log(this.state, ' este es el estado');  
+  const { requestService, distance, estimatedTime, coordenates } = this.props 
   return (
    <Container center={true} viewLogin={true}>
     <Card>
