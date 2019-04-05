@@ -27,7 +27,6 @@ class NavBar extends React.Component<INavBarProps> {
  public render() {
   const { logout } = this.props
   // tslint:disable-next-line:no-console
-  console.log(this.props, logout,  ' estas son las propiedades del request service')
   return (
    <div style={style.navbar}>
     <Link style={style.link} to='/app/service'><FontAwesomeIcon icon={faMapMarkedAlt} /> Liftit Test</Link>

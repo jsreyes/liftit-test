@@ -1,5 +1,5 @@
 import { AnyAction, Dispatch } from 'redux';
-import { environment } from '../environment/environment'
+// import { environment } from '../environment/environment'
 import { IServices } from '../services/index'
 
 // Creando acciones
@@ -9,9 +9,10 @@ const FIND_ROUTE_FAIL = '[SERVICE] Find Route Fail'
 
 // Interface de Login
 export interface IRequestService {
+ coordenates: object[],
  description: string,
  destinationAddress: string,
- distance: string
+ distance: string,
  estimatedTime: string,
  originAddress: string,
 }
@@ -36,6 +37,7 @@ const fetchFindRouteError = (error: Error) => ({
 
 // Estado inicial
 const initialState = {
+ coordenates: undefined,
  description: undefined,
  destinationAddress: undefined,
  distance: undefined,
@@ -56,8 +58,9 @@ export default function reducer(state = initialState, action: AnyAction) {
   case FIND_ROUTE_SUCCESS:
    return {
     ...state,
+    coordenates: action.data.coordenates,
     distance: action.data.distance,
-    estimatedTime: action.data.estimatedTime
+    estimatedTime: action.data.estimatedTime,
    }
 
   case FIND_ROUTE_FAIL:
@@ -74,9 +77,8 @@ export default function reducer(state = initialState, action: AnyAction) {
 export const requestService = ({ description, destinationAddress, originAddress }: IRequestService) =>
  async (dispatch: Dispatch, getState: () => any, { auth }: IServices) => {
   dispatch(fetchFindRoute(description, destinationAddress, originAddress))
-  const url = 'https://maps.googleapis.com/maps/api/directions/json?origin=' + originAddress + '&destination=' + destinationAddress + '&key=' + environment.GOOGLE_MAPS.API_KEY_GOOGLE_MAPS + ''
+  const url = 'http://localhost:5000/route?origin=' + originAddress + '&destination=' + destinationAddress;
   try {
-
    const result = await fetch(url)
     .then((response) => {
      return response.json();
@@ -86,11 +88,12 @@ export const requestService = ({ description, destinationAddress, originAddress 
     });
 
    const dataResponse = {
+    coordenates: result.coordenates,
     description,
     destinationAddress,
-    distance: result.routes[0].legs[0].distance.text,
-    estimatedTime: result.routes[0].legs[0].duration.text,
-    originAddress
+    distance: result.distance,
+    estimatedTime: result.duration,
+    originAddress,
    }
 
    dispatch(fetchFindRouteSuccess(dataResponse))
