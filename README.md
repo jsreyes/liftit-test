@@ -10,6 +10,35 @@ The following packages must be installed before running the app:
 
 - [React](https://www.npmjs.com/package/react)
 
+Cloning the [repository](https://github.com/jsreyes/backend-liftit-test):
+
+```
+git clone https://github.com/jsreyes/backend-liftit-test.git
+```
+
+- Go to the root of the directory by running:
+
+```
+cd backend-liftit-test
+```
+
+- Install all project dependencies by running:
+
+```
+npm install
+```
+
+- Start server
+```
+npm start
+```
+
+o
+
+```
+node index.js
+```
+
 ### Installation
 
 After cloning the [repository](https://github.com/jsreyes/liftit-test):
@@ -44,5 +73,4 @@ yarn install
 yarn start
 ```
 
-- Important: When enter to app/service and submit button, appears some CORS error please add Allow-Control-Allow-Origin: * and enabled cross origin resource shared
-In next link you can download extension (https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=es-419)
+- Important: Clone first backend-liftit-test repository and install dependences and run server before to run front-end app
